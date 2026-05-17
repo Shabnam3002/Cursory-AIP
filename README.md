@@ -59,10 +59,20 @@ The algorithms, automation logic, and UI design are the intellectual property of
 ---
 
 ## Platform Interface & UI
+
 ### 1. The Tracking Dashboard (Brand Safety)
 Here, the backend separated 'total views' from verified 'Eligible views', filtering out any bot traffic to calculate actual INR earnings.
-<img src="assests/user_profile.png" width="800" alt="User Profile Dashboard">
+<img src="assests/tracking.png" width="800" alt="Tracking Dashboard">
 
+### 2. Creator Profile & Trust Score
+A strict 3-hearts trust system. Repeated invalid/fake link submission lead to a permanent account ban.
+<img src="assests/user_profile.png" width="800" alt="User Profile">
+
+### 3. Smart Wallet & Automated Fees
+Direct UPI/Bank transfers with a minimum threshold of ₹500 and automated 3% platform fee logic.
+<img src="assests/wallet.png" width="800" alt="Wallet System">
+
+---
 
 **@ 2026 Cursory AIP. All rights reserved.**
 
