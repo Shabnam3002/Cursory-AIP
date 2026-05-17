@@ -1,0 +1,244 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+       .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: white;
+            display: flex:
+
+
+       } 
+       body {
+        background-color: #0f172a;
+    
+      }
+       
+      ::placeholder { color: rgba(255, 255, 255, 0.5) !important;
+        opacity: 1;
+     }
+     @media (max-width: 576px) {
+        h2#bioCode{
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: white;
+        }
+     }
+    
+
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+
+        <!-- Top section: Back button+Campaign Title -->
+    <div class="d-flex align-items-center mb-4">
+        <a href="{% url 'profile' %}" class="btn btn-outline-light rounded-pill me-3"><i class="bi bi-arrow-left"></i> Back to Profile</a>
+        <h3 class="text-info fw-bold mb-0">{{ campaign.title }} - Connecting Dashboard</h3>
+    </div>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <!--bg-danger and white text-->
+            <div class="alert {% if message.tags == 'error' %}bg-danger text-white border-0{% else %}bg-success text-white border-0{% endif %} alert-dismissible fade show mb-4 shadow-lg" role="alert">
+                <strong class="fw-bold">
+                    {% if message.tags == 'error' %}<i class="bi bi-exclamation-triangle-fill"></i>{% endif %}
+                    {{ message }}
+                </strong>
+                <!-- debug 'test' Close button (X) -->
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            
+            {% if not account %}
+                <div class="glass-card p-4">
+                    <h4 class="text-info fw-bold mb-4">+ Connect Social Account</h4>
+                    <form method="POST" action="{% url 'connect_account' %}">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3 text-start">
+                            <label class="form-label small text-white-50">Username</label>
+                            <input type="text" class="form-control bg-dark border-secondary text-white" value="{{ user.username }}" readonly>
+                        </div>
+
+                        <div class="mb-3 text-start">
+                            <label class="form-label small text-white-50">Official Email</label>
+                            <input type="email" name="email" class="form-control bg-dark border-secondary text-white" value="{{ user.email }}" readonly>
+                        </div>
+
+                        <div class="mb-4 text-start">
+                            <label class="form-label small text-white-50 d-flex align-items-center">
+                                Social Media Profile Link
+                                <!--Social platforms icon-->
+                                <span class="ms-auto fs-6">
+                                    <i class="bi bi-instagram text-danger" title="Instagram"></i>
+                                    <i class="bi bi-youtube text-danger ms-2" title="YouTube"></i>
+                                    <i class="bi bi-facebook text-primary ms-2" title="Facebook"></i>
+                                    <i class="bi bi-play-btn text-info ms-2" title="Moj / Others"></i>
+                                </span>
+                            </label>
+                            
+                            <input type="url" name="social_link" class="form-control bg-dark border-secondary text-white" placeholder="https://SocialMedia.com/your_id" required>
+                        </div>
+
+                        <div class="alert alert-secondary bg-opacity-10 border-0 small text-start mb-4">
+                            <i class="bi bi-info-circle-fill text-info"></i> 
+                            <strong>Note:</strong> Once activated, the verification code will be valid for <strong>only 5 minutes</strong>. You must paste it into your social bio immediately.
+                        </div>
+
+                        <button type="submit" class="btn btn-info w-100 rounded-pill fw-bold py-2">
+                            Start Verification Request
+                        </button>
+                    </form>
+                </div>
+
+            {% else %}
+                <div class="glass-card p-4 text-center">
+                    <h4 class="fw-bold text-info mb-4">Verification Status</h4>
+                    
+                    {% if account.status == 'failed' %}
+                        <div class="alert alert-danger bg-danger bg-opacity-10 border-danger text-danger text-start">
+                            <h6 class="fw-bold">Verification Failed</h6>
+                            <p class="small mb-2">Reason: {{ account.rejection_reason }}</p>
+                            <hr class="border-danger opacity-25">
+                            <p class="x-small mb-0 text-white-50">Please update your link or try again.</p>
+                        </div>
+                        <a href="{% url 'connect_account' %}" class="btn btn-outline-light w-100 rounded-pill mt-3">Try Again</a>
+
+                    {% else %}
+                        <!-- verification code (PENDING STATUS) -->
+                        <div class="py-2">
+                            
+                            <!-- Code C -->
+                            <div class="p-4 bg-dark rounded-4 border border-info mb-4 text-center">
+                                <p class="small text-white-50 mb-2">Copy this code to your bio:</p>
+                                <h2 class="fw-bold tracking-widest text-info" id="bioCode">{{ account.bio_code }}</h2>
+                                <button class="btn btn-sm btn-outline-info rounded-pill mt-2" onclick="copyCode()">
+                                    <i class="bi bi-clipboard"></i> Copy Code
+                                </button>
+                                <p class="text-warning small mb-0 mt-2">
+                                    <i class="bi bi-clock-history"></i> Valid for 5 minutes only.
+                                </p>
+                            </div>
+
+                            <!-- ve -->
+                            <a href="{% url 'start_verification' account.id %}"
+                            id="verifyBtn"
+                            class="btn btn-info w-100 rounded-pill fw-bold px-4 py-2 text-white"
+                            onclick="showLoadingScreen()">
+                                <!-- normal text-->
+                                <span id="normalText"><i class="bi bi-check-circle"></i> Verify Now</span>
+                                 <!-- loading spinner & text -->
+                                <span id="loadingState" style="display: none;">
+                                    <!-- Bootstrap's rotating spinner -->
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Verifying... Please wait
+                                </span>
+                            </a>
+                        </div>
+                    {% endif %}   
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- HELP & GUIDANCE SECTION   -->
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-7 text-center">
+            <button class="btn btn-outline-info rounded-pill px-4 py-2" data-bs-toggle="modal" data-bs-target="#helpModal">
+                <i class=></i> Need Help?
+            </button>
+        </div>
+    </div>
+</div> <!-- Main container div closing here 'test' -->
+
+<!-- Help Video Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card" style="background: #0f172a; border: 1px solid #38bdf8;">
+            <div class="modal-header border-bottom border-secondary">
+                <h5 class="modal-title fw-bold text-info">
+                    <i class="bi bi-info-circle-fill me-2"></i> Verification Guide
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-start">
+                
+                <!-- Alert warning for 1st Line -->
+                <div class="alert bg-warning text-dark border-0 fw-bold shadow-sm mb-3">
+                    <i class="bi bi-exclamation-triangle-fill fs-5"></i> 
+                    Crucial Step: Always paste your code in the <span class="text-danger text-decoration-underline">FIRST LINE</span> of your Bio.
+                </div>
+
+                <p class="small text-white-50 mb-3">Watch this quick video to learn how to correctly connect your social account without errors.</p>
+                
+                <!-- Video Placeholder -->
+                <div class="ratio ratio-16x9 bg-dark rounded-3 border border-secondary mb-4 position-relative overflow-hidden">
+                    <div class="d-flex flex-column align-items-center justify-content-center text-white-50 h-100 w-100">
+                        <i class="bi bi-play-circle-fill text-info mb-2" style="font-size: 3rem;"></i>
+                        <span>Tutorial Video Placeholder</span>
+                    </div>
+                </div>
+
+                <!-- Step by step text guide -->
+                <h6 class="fw-bold text-info">Quick Steps:</h6>
+                <ol class="small text-white-50 mb-0">
+                    <li class="mb-1">Copy the 6-digit Bio-Code generated for you.</li>
+                    <li class="mb-1">Go to your Instagram or YouTube profile.</li>
+                    <li class="mb-1 text-white">Edit Profile and paste the code at the <strong>very top (1st line)</strong> of your bio.</li>
+                    <li>Come back here and click "Verify Now".</li>
+                </ol>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-info w-100 rounded-pill fw-bold text-white" data-bs-dismiss="modal">I Understand</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+function copyCode() {
+    var codeText = document.getElementById("bioCode").innerText;
+    navigator.clipboard.writeText(codeText).then(function() {
+        alert("Code Copied: " + codeText);
+    });
+}
+</script>
+
+<script>
+function showLoadingScreen() {
+    //1. find html element 
+    var btn = document.getElementById("verifyBtn");
+    var normalText = document.getElementById("normalText");
+    var loadingState = document.getElementById("loadingState");
+
+    //2 hide normal text and show "Verifying..." spinner
+    normalText.style.display = "none";
+    loadingState.style.display = "inline-block";
+
+    //3 disable the button so that user cant abale to click repeatdly
+    btn.classList.add("disabled"); 
+    btn.style.pointerEvents = "none"; 
+    btn.style.opacity = "0.7"; // blur it little
+
+}
+</script>
+</body>
+
+</html>
