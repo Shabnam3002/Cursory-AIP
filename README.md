@@ -31,6 +31,11 @@ The platform operates on a 4-tier automated system:
 | **4. Wallet system** | filters 'Eligible views' into INR (₹500 Threshold) | bank teller |
 
 ---
+## ✨ key Technical Features
+
+
+
+
 
 
 
