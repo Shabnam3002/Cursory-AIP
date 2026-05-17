@@ -1,0 +1,250 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursory AIP | Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body { 
+            background: #0f172a; 
+            color: #f8fafc; 
+            font-family: 'Segoe UI', sans-serif; 
+            overflow-x: hidden; 
+        }
+        /* Glass effect enhancement */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            transition: all 0.3s ease-in-out;
+            height: 100%; 
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: #38bdf8;
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.1);
+        }
+        /* Spacing for mobile */
+        section { padding: 60px 0; }
+        .footer-link:hover { color: #38bdf8 !important; }
+        
+        /* Dark Form Styling */
+        .form-control, .form-select {
+            background-color: #1e293b !important;
+            border: 1px solid #334155 !important;
+            color: white !important;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.25) !important;
+        }
+        .form-control::placeholder { color: rgba(255,255,255,0.4) !important; }
+    </style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-dark py-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="{% url 'home' %}">
+            <img src="{% static 'payments/logo.png' %}" width="32" height="32" alt="Logo" class="ms-2 flex-shrink-0 rounded-circle">
+            CURSORY <span class="text-info ms-1">AIP</span>
+        </a>
+        <div class="d-flex gap-2 gap-md-3 align-items-center">
+            <a href="{% url 'login' %}" class="btn btn-info btn-sm rounded-pill px-3 px-md-4 fw-bold shadow-sm">Get Start</a>
+            <i class="bi bi-list fs-2 text-white" style="cursor: pointer;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"></i>
+        </div>
+    </div>
+</nav>
+
+<!--OFFCANVAS MENU -->
+<div class="offcanvas offcanvas-end bg-dark text-white" tabindex="-1" id="offcanvasNavbar" style="width: 280px;">
+    <div class="offcanvas-header border-bottom border-secondary">
+        <h5 class="offcanvas-title text-info fw-bold">MENU</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3 mt-3">
+            <li class="nav-item">
+                <a class="nav-link text-white h5" href="{% url 'signup' %}"><i class="bi bi-person-plus me-3 text-info"></i> Signup</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white h5" href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right me-3 text-info"></i> Login</a>
+            </li>
+            <li class="nav-item mt-4 pt-4 border-top border-secondary">
+                <a class="nav-link text-white h5" href="#supportSection"><i class="bi bi-headset me-3 text-warning"></i> Help & Support</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="text-center py-5">
+    <div class="container">
+        <h2 class="fw-bold mb-5 display-6 px-2">Welcome to Cursory<br><span class="text-info">All India Promotion Platform</span></h2>
+        
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-md-5">
+                <div class="glass-card p-4 p-md-5">
+                    <i class="bi bi-megaphone fs-1 text-info mb-3 d-block"></i>
+                    <h3 class="fw-bold">Campaign</h3>
+                    <p class="text-white-50 small mb-4">Learn how to start your promotion journey.</p>
+                    <button class="btn btn-outline-info btn-sm rounded-pill px-4"><i class="bi bi-play-circle me-1"></i> Play Tutorial</button>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-5">
+                <div class="glass-card p-4 p-md-5">
+                    <i class="bi bi-wallet2 fs-1 text-info mb-3 d-block"></i>
+                    <h3 class="fw-bold">Earning</h3>
+                    <p class="text-white-50 small mb-4">Learn how to promote Campaigns and Track your INR Money.</p>
+                    <button class="btn btn-outline-info btn-sm rounded-pill px-4"><i class="bi bi-play-circle me-1"></i> Play Tutorial</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ACTIVE CAMPAIGNS SECTION -->
+<section class="bg-black bg-opacity-25 py-5">
+    <div class="container">
+        <h4 class="mb-4 fw-bold text-info"><i class="bi bi-fire me-2"></i> Active Campaigns</h4> 
+        <div class="row g-4">
+            
+            <!-- Sample Campaign Card -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="glass-card p-4 text-center">
+                    <span class="badge bg-info text-dark mb-3 px-3">BGMI GAME </span>
+                    <div class="my-3 py-4 bg-dark bg-opacity-50 rounded-4 border border-secondary border-opacity-25">
+                        <i class="bi bi-trophy fs-1 text-warning"></i>
+                    </div>
+                    <div class="text-start small mb-3">
+                        
+                        <p class="mb-1 text-white-50">Total Budget: <span class="text-info fw-bold">  ₹19000</span></p>
+                        <div class="progress rounded-pill" style="height: 8px; background: #222;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 5%"></div>
+                        </div>
+                        <p class="mt-2 mb-0" style="font-size: 0.75rem;">Budget Used: 5%</p>
+                    </div>
+                    <a href="{% url 'login' %}"class="btn btn-sm btn-info w-100 rounded-pill fw-bold">Get start </a> 
+                    
+                </div>
+            </div>
+            
+            
+            <div class="col-12 col-sm-6 col-lg-3"> <!--File update after test broo-->
+                <div class="glass-card p-5 d-flex align-items-center justify-content-center text-white-50 fw-bold border-dashed">Coming Soon</div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="glass-card p-5 d-flex align-items-center justify-content-center text-white-50 fw-bold border-dashed">Coming Soon</div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="glass-card p-5 d-flex align-items-center justify-content-center text-white-50 fw-bold border-dashed">Coming Soon</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section id="supportSection" class="py-5"> <!--SUPPORT & CONTACT form  -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="glass-card p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <h3 class="fw-bold text-info"><i class="bi bi-headset"></i> Support & Help</h3>
+                        <p class="text-white-50 small">Fill out the form below and our team will get back to you.</p>
+                    </div>
+                    
+                    <!-- NAYA FIX: ID add ki hai taaki message bhejne ke baad user yahi wapas aaye -->
+                    <form action="{% url 'home' %}#supportSection" method="POST">
+                        {% csrf_token %} <!-- Django Security Token -->
+                        
+                        
+                        {% if messages %}
+                        <div id="popupMessage" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show shadow-lg text-center" role="alert">
+                                    <i class="bi bi-check-circle-fill me-2"></i><strong>{{ message }}</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- 5 seconds message popup -->
+                        <script>
+                            setTimeout(function() {
+                                let popup = document.getElementById('popupMessage');
+                                if (popup) {
+                                    popup.style.display = 'none';
+                                }
+                            }, 5000); // 5000ms = 5 seconds
+                        </script>
+                        {% endif %}
+                        
+
+                        <div class="mb-3">
+                            <label class="form-label small text-white-50">Full Name</label>
+                            <!-- name="name"  -->
+                            <input type="text" name="name" class="form-control rounded-3 py-2" placeholder="Enter your name or Username" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label small text-white-50">Email Address</label>
+                            <!--  name="email" -->
+                            <input type="email" name="email" class="form-control rounded-3 py-2" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label small text-white-50">What do you need help with?</label>
+                            <!--  name="category"  -->
+                            <select name="category" class="form-select rounded-3 py-2" required>
+                                <option value="" disabled selected>Select an option...</option>
+                                <option value="business">🤝 Business Contact</option>
+                                <option value="help_creator">💡 Help for Creators</option>
+                                <option value="feedback">📝 Feedback</option>
+                                <option value="complain">⚠️ Complain</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label small text-white-50">Description</label>
+                            <!-- name="description"  -->
+                            <textarea name="description" class="form-control rounded-3 py-2" rows="4" placeholder="Describe your issue or query in detail..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-info w-100 rounded-pill fw-bold py-2 shadow">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="py-4 border-top border-secondary border-opacity-25 bg-black bg-opacity-50">
+    <div class="container">
+        <div class="row g-3 align-items-center text-center text-md-start">
+            <div class="col-12 col-md-6">
+                <div class="d-flex flex-wrap justify-content-center justify-content-md-start gap-3">
+                    <!--<a href="#supportSection" class="footer-link text-secondary text-decoration-none small">Support</a>-->
+                    <a href="#supportSection" class="footer-link text-secondary text-decoration-none small">Business</a>
+                    <a href="{% static 'docs/Cursory_AIP_Legal_Safety_Policy.pdf' %}" target="_blank" class="footer-link text-secondary text-decoration-none small">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 text-md-end">
+                <span class="text-secondary small">© 2026 <span class="text-info fw-bold">CURSORY AIP</span></span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
