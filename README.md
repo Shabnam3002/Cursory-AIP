@@ -45,7 +45,25 @@ A zero-tolerance anti-fraud algorithm protecting brands from bot traffic.
 * losing all 3 hearts results in a permanent account deactivation.
 
 ### 💰 3. Automated Tracking & INR Wallet ('payments')
-* **Real-time Tracking;**
+* **Real-time Tracking;** Separates 'total views' from 'eligible views'.
+* **Smart Withdrawals:** Built-in wallet a minimum threshold of ₹500 and an automated 3% platform fee deduction mechanism.
+
+---
+
+## ⚖️ Legal & Proprietary Notice
+**This is a proprietary business model.**
+The algorithms, automation logic, and UI design are the intellectual property of Cursory AIP. The platform strictly enforces the Indian IT Act (Section 66D) and BNS againt bot traffic, identity theft, and cheating.
+
+*(Please refer to the 'SECURITY.md' file for full legal and compliance policies).*
+
+---
+**@ 2026 Cursory AIP. All rights reserved.**
+
+
+
+
+
+
 
 
 
