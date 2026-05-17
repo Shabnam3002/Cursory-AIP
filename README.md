@@ -57,6 +57,13 @@ The algorithms, automation logic, and UI design are the intellectual property of
 *(Please refer to the 'SECURITY.md' file for full legal and compliance policies).*
 
 ---
+
+## Platform Interface & UI
+### 1. The Tracking Dashboard (Brand Safety)
+Here, the backend separated 'total views' from verified 'Eligible views', filtering out any bot traffic to calculate actual INR earnings.
+<img src="assests/user_profile.png" width="800" alt="User Profile Dashboard">
+
+
 **@ 2026 Cursory AIP. All rights reserved.**
 
 
