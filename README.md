@@ -25,6 +25,8 @@ The platform operates on a 4-tier automated system:
 
 | Stage | Process | Analogy |
 | :-- | :-- | :-- |
+| **1. Verification** | Selenium headless browser verifies 5-minute Bio-code | security guard |
+
 
 
 
