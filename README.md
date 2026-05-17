@@ -73,7 +73,7 @@ Direct UPI/Bank transfers with a minimum threshold of ₹500.
 <img src="assests/wallet.png" width="800" alt="Wallet System">
 
 And Automated 3% platform fee logic.
-<img src="assests/withdraw_request.png" width="400" alt="Transaction System"> 
+<img src="assests/withdraw_request.png" width="500" alt="Transaction System"> 
 
 ---
 
