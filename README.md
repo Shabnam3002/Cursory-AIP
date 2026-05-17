@@ -11,9 +11,24 @@ genuine social media creators. It eliminates bot-fraud for brands and ensures tr
 ## Cursory AIP vs Global Alternatives 
 unlike global platform that rely on complex payment gateways and lack strict local fraud monitoring, Cursory AIP is built specifically for high-volume Indian creator economy.
 
+---
+
 | Feature | Cursory AIP | USD Global Platforms |
 | :--- | :--- | :--- |
 | **Currency & Volume** | **INR** (High local volume, consistent deals) | USD (Rare international deals) |
 | **Payment Gateway** | **Direct UPI / Bank Transfer** (Instant) | PayPal (Heavy conversion fees) |
 | **Bot Protection** | **3-Hearts Anti-Fraud Guard** (Bans at 48 failed links) | Minimal to None |
 | **Account Linking** | **Automated Bio-Code** (No passwords required) | Risky password sharing |
+---
+## ⚙️ Core Architecture & Pipeline
+The platform operates on a 4-tier automated system:
+
+| Stage | Process | Analogy |
+| :-- | :-- | :-- |
+
+
+
+
+
+
+
