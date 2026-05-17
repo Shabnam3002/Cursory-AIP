@@ -33,6 +33,20 @@ The platform operates on a 4-tier automated system:
 ---
 ## ✨ key Technical Features
 
+### 1. Automated Bio-code verification ('earning_profile')
+To ensure maximum security and eliminate identity theft:
+* generates a unique, 5-minutes valid **Bio-code**.
+* uses a custom-built selenium scraper ('undetected-chromodriver') to visit creator's profile, pause for human-like behavior, and verify the code directly from the bio.
+
+### 💖 2. Fraud guard & trust score system ('fraud_guard')
+A zero-tolerance anti-fraud algorithm protecting brands from bot traffic.
+* Every creator starts with **3 trust hearts**.
+* if a creator submits 48 blocked/invalid links in a single campaigns, the lose a heart.
+* losing all 3 hearts results in a permanent account deactivation.
+
+### 💰 3. Automated Tracking & INR Wallet ('payments')
+* **Real-time Tracking;**
+
 
 
 
