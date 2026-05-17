@@ -26,6 +26,11 @@ The platform operates on a 4-tier automated system:
 | Stage | Process | Analogy |
 | :-- | :-- | :-- |
 | **1. Verification** | Selenium headless browser verifies 5-minute Bio-code | security guard |
+| **2. Submission** | backend URL cleaning & duplicate link tracking | Data Entry |
+| **3. Trust score** | monitors invalid views & bans users exceeding 48 blocks | the judge |
+| **4. Wallet system** | filters 'Eligible views' into INR (₹500 Threshold) | bank teller |
+
+---
 
 
 
