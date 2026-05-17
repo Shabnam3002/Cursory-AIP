@@ -1,1 +1,15 @@
+# Cursory AIP - Project Dependencies
+# Python Version Required: 3.10+
 
+# Core Web Framework
+Django>=5.2
+
+# Image Processing (For Campaign Banners)
+Pillow
+
+# Web Automation & Bio-Code Verification
+selenium
+undetected-chromedriver
+
+# Network Requests
+requests
