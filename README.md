@@ -69,8 +69,11 @@ A strict 3-hearts trust system. Repeated invalid/fake link submission lead to a 
 <img src="assests/user_profile.png" width="800" alt="User Profile">
 
 ### 3. Smart Wallet & Automated Fees
-Direct UPI/Bank transfers with a minimum threshold of ₹500 and automated 3% platform fee logic.
+Direct UPI/Bank transfers with a minimum threshold of ₹500.
 <img src="assests/wallet.png" width="800" alt="Wallet System">
+
+And Automated 3% platform fee logic.
+<img src="assests/withdraw_request.png" width="800" alt="Transaction System"> 
 
 ---
 
